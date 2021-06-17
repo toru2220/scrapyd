@@ -1,0 +1,23 @@
+pymongo
+urllib3
+requests
+scrapy == 2.2.1
+mpegdash
+m3u8
+fake-useragent
+twython
+mojimoji
+pillow
+slackweb
+lxml
+slack_log_handler
+selenium
+pathvalidate
+m3u8-dl
+mutagen
+python-dateutil
+chromedriver-binary == 86.0.4240.22 
+bar_chart_race
+scrapyd
+scrapyd-client
+
