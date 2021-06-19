@@ -38,3 +38,6 @@ ENV	COMMAND ""
 ENV	KEYWORD ""
 ENV	TESTMODE ""
 
+WORKDIR /data
+
+CMD scrapyd
