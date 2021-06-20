@@ -19,7 +19,7 @@ COPY --from=build-stage /lib/x86_64-linux-gnu/*.so.* /lib/x86_64-linux-gnu/
 COPY requirements.txt /root/
 
 RUN apt-get update && \
-	apt-get install -y tini wget curl fonts-ipafont git && \
+	apt-get install -y tini wget curl fonts-ipafont git zip unzip && \
 	pip3 install --upgrade pip && \
 	pip3 install -r /root/requirements.txt && \
 	rm -rf /root/.cache/pip && \
