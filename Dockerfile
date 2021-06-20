@@ -1,8 +1,6 @@
 # build
 FROM python:3.8-slim as build-stage
 
-COPY requirements.txt /root/
-
 RUN     apt-get update && \
         apt-get install -y --no-install-recommends wget curl unzip imagemagick ffmpeg && \
         apt-get install -y --no-install-recommends python3-dev python3-pip python-twisted python3-dev python3-setuptools && \
@@ -14,10 +12,11 @@ FROM jrottenberg/ffmpeg:4.2-scratch AS ffmpeg
 FROM python:3.8-slim
 
 COPY --from=ffmpeg / /
-COPY --from=build-stage /root/requirements.txt /root
 
 COPY --from=build-stage /usr/lib/x86_64-linux-gnu/*.so.* /usr/lib/x86_64-linux-gnu/
 COPY --from=build-stage /lib/x86_64-linux-gnu/*.so.* /lib/x86_64-linux-gnu/
+
+COPY requirements.txt /root/
 
 RUN apt-get update && \
 	apt-get install -y tini wget curl fonts-ipafont git && \
@@ -27,9 +26,10 @@ RUN apt-get update && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
+WORKDIR /scrapy-do
 
-COPY default_scrapyd.conf /usr/local/lib/python3.8/site-packages/scrapyd
+COPY scrapy-do.conf /scrapy-do/
 
-WORKDIR /project
 
-CMD scrapyd
+CMD	scrapy-do -n scrapy-do --config /scrapy-do/scrapy-do.conf
+
