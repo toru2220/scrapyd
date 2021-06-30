@@ -32,7 +32,6 @@ COPY scrapy-do.conf /scrapy-do/
 COPY diff.patch /scrapy-do/
 
 COPY schedule.py /usr/local/lib/python3.8/site-packages/scrapy_do/
-COPY controller.py /usr/local/lib/python3.8/site-packages/scrapy_do/
 
 RUN patch -u /usr/local/lib/python3.8/site-packages/scrapy_do/webservice.py < diff.patch	
 
